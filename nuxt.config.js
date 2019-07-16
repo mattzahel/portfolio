@@ -49,8 +49,15 @@ module.exports = {
   /*
    ** Nuxt.js modules
    */
-  modules: [],
-
+  modules: [
+    '@nuxtjs/axios',
+    '@nuxtjs/apollo'
+  ],
+  apollo: {
+    clientConfigs: {
+      default: '~/plugins/apollo/config.js'
+    }
+  },
   /*
    ** Build configuration
    */

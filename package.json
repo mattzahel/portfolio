@@ -11,9 +11,12 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@nuxtjs/apollo": "^4.0.0-rc8.2",
+    "@nuxtjs/axios": "^5.5.4",
     "cross-env": "^5.2.0",
-    "nuxt": "^2.3.4",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "graphql-tag": "^2.10.1",
+    "nuxt": "^2.3.4"
   },
   "devDependencies": {
     "nodemon": "^1.18.9"

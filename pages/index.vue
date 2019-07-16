@@ -5,17 +5,38 @@
       <h1 class="title">portfolio</h1>
       <h2 class="subtitle">My portfolio website</h2>
       <div class="links">
-        <a href="https://nuxtjs.org/" target="_blank" class="button--green">Documentation</a>
-        <a href="https://github.com/nuxt/nuxt.js" target="_blank" class="button--grey">GitHub</a>
+        <li v-for="(project, index) in allProjects" :key="index">{{project.title}}</li>
       </div>
     </div>
   </section>
 </template>
 
 <script>
+import gql from "graphql-tag";
 import Logo from "~/components/Logo.vue";
 
 export default {
+  apollo: {
+    allProjects: gql`
+      query {
+        allProjects {
+          id
+          title
+          description
+          slug
+          tags
+          thumbnail {
+            url
+          }
+        }
+      }
+    `
+  },
+  data() {
+    return {
+      allProjects: []
+    };
+  },
   components: {
     Logo
   }
