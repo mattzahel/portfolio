@@ -23,10 +23,15 @@ module.exports = {
       }
     ],
     link: [{
-      rel: 'icon',
-      type: 'image/x-icon',
-      href: '/favicon.ico'
-    }]
+        rel: 'icon',
+        type: 'image/x-icon',
+        href: '/favicon.ico'
+      },
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap&subset=latin-ext'
+      }
+    ]
   },
 
   /*
@@ -39,7 +44,9 @@ module.exports = {
   /*
    ** Global CSS
    */
-  css: [],
+  css: [
+    '~/assets/css/main.css'
+  ],
 
   /*
    ** Plugins to load before mounting the App
