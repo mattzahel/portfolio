@@ -58,12 +58,17 @@ module.exports = {
    */
   modules: [
     '@nuxtjs/axios',
-    '@nuxtjs/apollo'
+    '@nuxtjs/apollo',
+    '@nuxtjs/svg-sprite'
   ],
   apollo: {
     clientConfigs: {
       default: '~/plugins/apollo/config.js'
     }
+  },
+  svgSprite: {
+    input: '~/assets/icons',
+    output: '~/assets/icons/sprite',
   },
   /*
    ** Build configuration
