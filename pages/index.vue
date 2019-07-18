@@ -1,5 +1,5 @@
 <template>
-  <section class="container"></section>
+  <section class="hero"></section>
 </template>
 
 <script>
@@ -32,5 +32,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.hero {
+  height: 200vh;
+  background-color: $bg-grey;
+}
 </style>
 

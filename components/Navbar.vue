@@ -61,15 +61,20 @@ export default {
   width: 100%;
   height: 7.5rem;
   padding: 0 2rem;
-  background-color: $color-primary;
+  background-color: $color-white;
   display: flex;
   justify-content: space-between;
   align-items: center;
   color: $color-secondary;
 
+  @media screen and (min-width: $md) {
+    padding: 0 8rem;
+  }
+
   &__logo {
     font-size: 2.4rem;
     font-weight: 700;
+    color: $color-primary;
   }
 
   &__menu-open {
@@ -129,6 +134,7 @@ export default {
   .nuxt-link-exact-active {
     background-color: $color-primary;
     color: $color-secondary;
+    font-weight: 700;
   }
 }
 </style>
