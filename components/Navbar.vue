@@ -72,7 +72,7 @@ export default {
   }
 
   &__logo {
-    font-size: 2.4rem;
+    font-size: 2.6rem;
     font-weight: 700;
     color: $color-primary;
   }
@@ -129,6 +129,7 @@ export default {
       width: 100%;
       padding: 0 3rem;
       font-weight: 700;
+      transition: 0.2s ease-out;
 
       &:hover {
         background-color: $color-primary;
