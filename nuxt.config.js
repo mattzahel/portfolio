@@ -8,8 +8,7 @@ module.exports = {
    */
   head: {
     title: pkg.name,
-    meta: [
-      {
+    meta: [{
         charset: "utf-8"
       },
       {
@@ -22,16 +21,14 @@ module.exports = {
         content: pkg.description
       }
     ],
-    link: [
-      {
+    link: [{
         rel: "icon",
         type: "image/x-icon",
         href: "/favicon.ico"
       },
       {
         rel: "stylesheet",
-        href:
-          "https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap&subset=latin-ext"
+        href: "https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap&subset=latin-ext"
       }
     ]
   },
@@ -68,8 +65,8 @@ module.exports = {
     }
   },
   svgSprite: {
-    input: "~/assets/icons",
-    output: "~/assets/icons/sprite"
+    input: "~/assets/svg",
+    output: "~/assets/svg/sprite"
   },
   styleResources: {
     // your settings here

@@ -22,11 +22,11 @@ export default {
   name: "Navbar",
   data() {
     return {
-      showMenu: true,
+      showMenu: false,
       links: [
         {
           name: "About",
-          href: "/#about"
+          href: "/"
         },
         {
           name: "Skills",
@@ -128,13 +128,18 @@ export default {
       color: $color-primary;
       width: 100%;
       padding: 0 3rem;
+      font-weight: 700;
+
+      &:hover {
+        background-color: $color-primary;
+        color: $color-secondary;
+      }
     }
   }
 
   .nuxt-link-exact-active {
     background-color: $color-primary;
     color: $color-secondary;
-    font-weight: 700;
   }
 }
 </style>

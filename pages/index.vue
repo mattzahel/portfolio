@@ -1,10 +1,10 @@
 <template>
-  <section class="hero"></section>
+  <Hero />
 </template>
 
 <script>
 import gql from "graphql-tag";
-
+import Hero from "~/components/Hero";
 export default {
   // apollo: {
   //   allProjects: gql`
@@ -27,14 +27,12 @@ export default {
       allProjects: []
     };
   },
-  components: {}
+  components: {
+    Hero
+  }
 };
 </script>
 
 <style lang="scss" scoped>
-.hero {
-  height: 200vh;
-  background-color: $bg-grey;
-}
 </style>
 
