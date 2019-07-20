@@ -1,10 +1,14 @@
 <template>
-  <Hero />
+  <main>
+    <Hero />
+    <Skills />
+  </main>
 </template>
 
 <script>
 import gql from "graphql-tag";
 import Hero from "~/components/Hero";
+import Skills from "~/components/Skills";
 export default {
   // apollo: {
   //   allProjects: gql`
@@ -28,7 +32,8 @@ export default {
     };
   },
   components: {
-    Hero
+    Hero,
+    Skills
   }
 };
 </script>

@@ -10,7 +10,7 @@
           <br />and
           web designer.
         </p>
-        <p class="hero__about headline">I'm currently freelancing and looking for temporary work.</p>
+        <p class="hero__about">I'm currently freelancing and looking for temporary work.</p>
         <Socials />
       </div>
       <div class="hero__img">
@@ -79,6 +79,7 @@ export default {
     font-size: 2.4rem;
     font-weight: 600;
     margin: 1rem 0;
+    // letter-spacing: 2px;
   }
 
   &__img {
