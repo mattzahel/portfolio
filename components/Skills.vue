@@ -80,6 +80,7 @@ export default {
 .skills {
   padding-top: 7.5rem;
   height: 100vh;
+  max-width: 100vw;
   display: flex;
   flex-direction: column;
 
@@ -87,11 +88,15 @@ export default {
     height: auto;
   }
 
-    @media screen and (min-width: $lg) {
+  @media screen and (min-width: $lg) {
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
   }
 
   &__heading {
+    width: 100%;
     text-align: center;
   }
 
@@ -99,7 +104,7 @@ export default {
     @include card-shadow;
     border-radius: 1rem;
     margin: 2rem;
-    padding: 1rem 2rem;
+    padding: 2rem;
 
     @media screen and (min-width: $md) {
       display: grid;
@@ -115,6 +120,7 @@ export default {
     @media screen and (min-width: $lg) {
       max-width: 90%;
       margin: 2rem auto;
+      padding: 6rem 3rem;
     }
   }
   &__list {

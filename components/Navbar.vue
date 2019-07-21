@@ -58,6 +58,7 @@ export default {
 <style lang="scss">
 .nav {
   position: fixed;
+  z-index: 999;
   width: 100%;
   height: 7.5rem;
   padding: 0 2rem;
@@ -97,7 +98,6 @@ export default {
   &__menu {
     box-shadow: 2px 0px 10px $color-secondary;
     position: fixed;
-    z-index: 2;
     top: 0;
     right: -80%;
     background-color: $color-secondary;
