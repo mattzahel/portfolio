@@ -1,5 +1,5 @@
 <template>
-  <button class="action-button">
+  <button class="button">
     <slot></slot>
   </button>
 </template>
@@ -9,7 +9,7 @@ export default {};
 </script>
 
 <style lang="scss">
-.action-button {
+.button {
   font-size: 1.8rem;
   width: 100%;
   height: 5rem;
@@ -23,6 +23,11 @@ export default {};
 
   &:hover,
   &:focus {
+    background-color: $color-primary;
+    color: $color-white;
+  }
+
+  &--active {
     background-color: $color-primary;
     color: $color-white;
   }

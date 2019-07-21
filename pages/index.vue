@@ -2,38 +2,20 @@
   <main>
     <Hero />
     <Skills />
+    <Projects />
   </main>
 </template>
 
 <script>
-import gql from "graphql-tag";
 import Hero from "~/components/Hero";
 import Skills from "~/components/Skills";
+import Projects from "~/components/Projects";
+
 export default {
-  // apollo: {
-  //   allProjects: gql`
-  //     query {
-  //       allProjects {
-  //         id
-  //         title
-  //         description
-  //         slug
-  //         tags
-  //         thumbnail {
-  //           url
-  //         }
-  //       }
-  //     }
-  //   `
-  // },
-  data() {
-    return {
-      allProjects: []
-    };
-  },
   components: {
     Hero,
-    Skills
+    Skills,
+    Projects
   }
 };
 </script>

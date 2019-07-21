@@ -79,7 +79,6 @@ export default {
     font-size: 2.4rem;
     font-weight: 600;
     margin: 1rem 0;
-    // letter-spacing: 2px;
   }
 
   &__img {
@@ -101,7 +100,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    // padding-bottom: 5rem;
+    padding-bottom: 1rem;
   }
 }
 </style>
