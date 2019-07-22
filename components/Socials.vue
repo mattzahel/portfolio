@@ -47,5 +47,20 @@ export default {};
     height: 3rem;
     color: $color-primary;
   }
+
+  &--light &__link {
+    border: 2px solid $color-white;
+
+    &:hover {
+      background-color: $color-white;
+    }
+
+    &:hover .socials__icon {
+      color: $color-primary;
+    }
+  }
+  &--light &__icon {
+    color: $color-white;
+  }
 }
 </style>
