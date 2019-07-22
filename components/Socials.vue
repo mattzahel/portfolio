@@ -1,14 +1,14 @@
 <template>
   <div class="socials">
-    <div class="socials__wrapper">
+    <a href="https://github.com/mattzahel" target="_blank" class="socials__link">
       <svg-icon name="github" class="socials__icon" title="Github" />
-    </div>
-    <div class="socials__wrapper">
+    </a>
+    <a href="https://www.linkedin.com/in/mateusz-zahel" target="_blank" class="socials__link">
       <svg-icon name="linkedin" class="socials__icon" title="Linked In" />
-    </div>
-    <div class="socials__wrapper">
+    </a>
+    <a href="https://www.instagram.com/mattzahel/" target="_blank" class="socials__link">
       <svg-icon name="instagram" class="socials__icon" title="Instagram" />
-    </div>
+    </a>
   </div>
 </template>
 
@@ -21,7 +21,7 @@ export default {};
   margin: 2rem 0;
   display: flex;
 
-  &__wrapper {
+  &__link {
     width: 6rem;
     height: 6rem;
     padding: 1.5rem;

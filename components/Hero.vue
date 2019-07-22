@@ -100,7 +100,10 @@ export default {
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    padding-bottom: 1rem;
+
+    @media screen and (min-width: 360px) {
+      padding-bottom: 2.5rem;
+    }
   }
 }
 </style>

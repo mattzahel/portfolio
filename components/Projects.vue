@@ -41,12 +41,12 @@
             </div>
           </div>
           <div class="projects__links">
-            <nuxt-link :to="item.live" v-if="item.live" target="_blank">
+            <a :href="item.live" v-if="item.live" target="_blank">
               <svg-icon name="live" width="1.5rem" height="1.5rem" />Live
-            </nuxt-link>
-            <nuxt-link :to="item.github" v-if="item.github" target="_blank">
+            </a>
+            <a :href="item.github" v-if="item.github" target="_blank">
               <svg-icon name="github" width="1.5rem" height="1.5rem" />Github
-            </nuxt-link>
+            </a>
           </div>
         </div>
       </div>
