@@ -32,6 +32,17 @@ export default {};
     color: $color-white;
   }
 
+  &:disabled,
+  &[disabled] {
+    opacity: 0.4;
+
+    &:hover {
+      background-color: transparent;
+      color: $color-primary;
+      cursor: not-allowed;
+    }
+  }
+
   @media screen and (min-width: $sm) {
     width: 20rem;
   }
