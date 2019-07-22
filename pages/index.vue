@@ -3,6 +3,7 @@
     <Hero />
     <Skills />
     <Projects />
+    <Contact />
   </main>
 </template>
 
@@ -10,12 +11,14 @@
 import Hero from "~/components/Hero";
 import Skills from "~/components/Skills";
 import Projects from "~/components/Projects";
+import Contact from "~/components/Contact";
 
 export default {
   components: {
     Hero,
     Skills,
-    Projects
+    Projects,
+    Contact
   }
 };
 </script>
