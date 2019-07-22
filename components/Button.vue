@@ -21,10 +21,31 @@ export default {};
   transition: 0.3s ease-in-out;
   cursor: pointer;
 
+  &__link {
+    width: 100%;
+
+    @media screen and (min-width: $sm) {
+      width: auto;
+    }
+  }
+  &__link:focus button {
+    background-color: $color-primary;
+    color: $color-white;
+  }
+
+  & a {
+    text-decoration: none;
+    color: $color-primary;
+  }
+
   &:hover,
   &:focus {
     background-color: $color-primary;
     color: $color-white;
+
+    a {
+      color: $color-white;
+    }
   }
 
   &--active {

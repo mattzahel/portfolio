@@ -17,7 +17,9 @@
         <svg-icon name="hero-img" />
       </div>
       <div class="hero__button">
-        <Button>more</Button>
+        <nuxt-link to="#skills" class="button__link">
+          <Button>more</Button>
+        </nuxt-link>
       </div>
     </div>
   </section>

@@ -11,7 +11,7 @@
         </button>
       </li>
       <li v-for="(link, index) in links" :key="index" class="nav__item" @click="toggleMenu">
-        <nuxt-link :to="link.href">{{link.name}}</nuxt-link>
+        <nuxt-link :to="{path: link.href, hash: link.hash }">{{link.name}}</nuxt-link>
       </li>
     </ul>
   </nav>
@@ -26,23 +26,27 @@ export default {
       links: [
         {
           name: "About",
-          href: "/"
+          path: "/",
+          hash: ""
         },
         {
           name: "Skills",
-          href: "/#skills"
+          path: "/",
+          hash: "#skills"
         },
         {
           name: "Projects",
-          href: "/#projects"
+          path: "/",
+          hash: "#projects"
         },
         // {
         //   name: "Services",
-        //   href: "/#services"
+        //   path: "/#services"
         // },
         {
           name: "Contact",
-          href: "/#contact"
+          path: "/",
+          hash: "#contact"
         }
       ]
     };
