@@ -1,14 +1,14 @@
 <template>
   <nav class="nav">
     <span class="nav__logo">mz.</span>
-    <span @click="toggleMenu">
+    <button @click="toggleMenu" class="nav__button">
       <svg-icon name="menu" class="nav__menu-open" />
-    </span>
+    </button>
     <ul class="nav__menu" :class="{'nav__menu--visible' : showMenu}">
       <li>
-        <span @click="toggleMenu">
+        <button @click="toggleMenu" class="nav__button">
           <svg-icon name="close" class="nav__menu-close" />
-        </span>
+        </button>
       </li>
       <li v-for="(link, index) in links" :key="index" class="nav__item" @click="toggleMenu">
         <nuxt-link :to="link.href">{{link.name}}</nuxt-link>
@@ -76,6 +76,10 @@ export default {
     font-size: 2.6rem;
     font-weight: 700;
     color: $color-primary;
+  }
+  &__button {
+    border: none;
+    background-color: transparent;
   }
 
   &__menu-open {
