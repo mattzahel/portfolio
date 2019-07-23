@@ -1,12 +1,36 @@
 <template>
   <div class="socials">
-    <a href="https://github.com/mattzahel" target="_blank" class="socials__link">
+    <a
+      href="https://github.com/mattzahel"
+      target="_blank"
+      class="socials__link"
+      data-aos="fade-up"
+      data-aos-duration="1000"
+      data-aos-delay="200"
+      data-aos-once="true"
+    >
       <svg-icon name="github" class="socials__icon" title="Github" />
     </a>
-    <a href="https://www.linkedin.com/in/mateusz-zahel" target="_blank" class="socials__link">
+    <a
+      href="https://www.linkedin.com/in/mateusz-zahel"
+      target="_blank"
+      class="socials__link"
+      data-aos="fade-up"
+      data-aos-duration="1000"
+      data-aos-delay="400"
+      data-aos-once="true"
+    >
       <svg-icon name="linkedin" class="socials__icon" title="Linked In" />
     </a>
-    <a href="https://www.instagram.com/mattzahel/" target="_blank" class="socials__link">
+    <a
+      href="https://www.instagram.com/mattzahel/"
+      target="_blank"
+      class="socials__link"
+      data-aos="fade-up"
+      data-aos-duration="1000"
+      data-aos-delay="600"
+      data-aos-once="true"
+    >
       <svg-icon name="instagram" class="socials__icon" title="Instagram" />
     </a>
   </div>

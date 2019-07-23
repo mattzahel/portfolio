@@ -4,7 +4,16 @@
       <span class="text-highlight">Contact me</span>
     </h2>
     <div class="container">
-      <form class="contact__form" name="contact" netlify method="post" netlify-honeypot="bot-field">
+      <form
+        class="contact__form"
+        name="contact"
+        netlify
+        method="post"
+        netlify-honeypot="bot-field"
+        data-aos="fade-up"
+        data-aos-duration="1200"
+        data-aos-once="true"
+      >
         <input type="hidden" name="contact" value="contact" />
         <p class="contact__hidden">
           <label>

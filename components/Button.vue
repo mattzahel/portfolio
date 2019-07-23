@@ -18,7 +18,7 @@ export default {};
   border-radius: 5rem;
   border: 2px solid $color-primary;
   font-weight: 600;
-  transition: 0.3s ease-in-out;
+  transition: 0.2s ease-in-out;
   cursor: pointer;
 
   &__link {

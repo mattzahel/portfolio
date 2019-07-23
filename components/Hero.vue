@@ -1,7 +1,12 @@
 <template>
   <section class="hero">
     <div class="hero__wrapper container">
-      <div class="hero__description">
+      <div
+        class="hero__description"
+        data-aos="fade-up"
+        data-aos-duration="1200"
+        data-aos-delay="200"
+      >
         <p class="hero__about">
           Hey, I'm
           <span class="text-highlight">Mateusz Zahel</span>
@@ -13,10 +18,16 @@
         <p class="hero__about">I'm currently freelancing and looking for temporary work.</p>
         <Socials />
       </div>
-      <div class="hero__img">
+      <div class="hero__img" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
         <svg-icon name="hero-img" />
       </div>
-      <div class="hero__button">
+      <div
+        class="hero__button"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+        data-aos-delay="200"
+        data-aos-offset="-50rem"
+      >
         <nuxt-link to="#skills" class="button__link">
           <Button>more</Button>
         </nuxt-link>

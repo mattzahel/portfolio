@@ -5,12 +5,18 @@
         Some of my
         <span class="text-highlight">skills</span>
       </h2>
-      <p class="subheading">
+      <p class="subheading" data-aos="fade-up" data-aos-duration="1200" data-aos-once="true">
         I design and implement responsive websites. I focus on aesthetics and try to write clean code.
         <br />I like to constantly learn new technologies, tools, I have good communication skills, and I am open to constructive criticism.
       </p>
     </div>
-    <div class="skills__card">
+    <div
+      class="skills__card"
+      data-aos="fade-up"
+      data-aos-duration="1200"
+      data-aos-delay="200"
+      data-aos-once="true"
+    >
       <div class="skills__section">
         <h3 class="heading">
           <span class="text-highlight">Frontend</span> Development

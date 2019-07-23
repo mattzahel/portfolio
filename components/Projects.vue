@@ -24,6 +24,9 @@
         v-for="item in allProjects"
         :key="item.id"
         v-if="item.projectType == type"
+        data-aos="fade-right"
+        data-aos-duration="1200"
+        data-aos-once="true"
       >
         <div class="projects__image">
           <img :src="item.thumbnail.url" :alt="item.thumbnail.alt" />
