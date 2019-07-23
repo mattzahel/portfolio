@@ -1,12 +1,7 @@
 <template>
   <section class="hero">
     <div class="hero__wrapper container">
-      <div
-        class="hero__description"
-        data-aos="fade-up"
-        data-aos-duration="1200"
-        data-aos-delay="200"
-      >
+      <div class="hero__description">
         <p class="hero__about">
           Hey, I'm
           <span class="text-highlight">Mateusz Zahel</span>
@@ -18,16 +13,10 @@
         <p class="hero__about">I'm currently freelancing and looking for temporary work.</p>
         <Socials />
       </div>
-      <div class="hero__img" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
+      <div class="hero__img">
         <svg-icon name="hero-img" />
       </div>
-      <div
-        class="hero__button"
-        data-aos="fade-up"
-        data-aos-duration="1000"
-        data-aos-delay="200"
-        data-aos-offset="-50rem"
-      >
+      <div class="hero__button">
         <nuxt-link to="#skills" class="button__link">
           <Button>more</Button>
         </nuxt-link>
@@ -49,6 +38,17 @@ export default {
 </script>
 
 <style lang="scss">
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
 .hero {
   padding: 10rem 1rem 2.5rem 1rem;
   width: 100%;
@@ -87,6 +87,7 @@ export default {
     flex-direction: column;
     justify-content: center;
     grid-area: about;
+    animation: fadeUp 1.2s cubic-bezier(0.22, 0.84, 0.68, 1);
   }
   &__about {
     font-size: 2.4rem;
@@ -97,6 +98,7 @@ export default {
   &__img {
     display: none;
     grid-area: img;
+    animation: fadeUp 1.2s cubic-bezier(0.22, 0.84, 0.68, 1);
 
     @media screen and (min-width: $md) {
       display: flex;
@@ -113,9 +115,10 @@ export default {
     display: flex;
     justify-content: center;
     align-items: flex-end;
+    animation: fadeUp 1.2s cubic-bezier(0.22, 0.84, 0.68, 1);
 
     @media screen and (min-width: 360px) {
-      padding-bottom: 2.5rem;
+      padding-bottom: 3rem;
     }
   }
 }
