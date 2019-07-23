@@ -4,8 +4,14 @@
       <span class="text-highlight">Contact me</span>
     </h2>
     <div class="container">
-      <form class="contact__form" name="contact" netlify method="post">
+      <form class="contact__form" name="contact" netlify method="post" netlify-honeypot="bot-field">
         <input type="hidden" name="contact" value="contact" />
+        <p class="contact__hidden">
+          <label>
+            Don’t fill this out:
+            <input name="bot-field" />
+          </label>
+        </p>
         <div class="contact__group">
           <label class="form-label" for="name">Name</label>
           <input type="text" class="form-field" name="name" id="name" required />
@@ -39,6 +45,11 @@ export default {};
   &__form {
     margin-bottom: 2.5rem;
   }
+
+  &__hidden {
+    display: none;
+  }
+
   &__group {
     display: flex;
     flex-direction: column;

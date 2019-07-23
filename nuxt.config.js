@@ -101,7 +101,11 @@ module.exports = {
     "@nuxtjs/axios",
     "@nuxtjs/apollo",
     "@nuxtjs/svg-sprite",
-    "@nuxtjs/style-resources"
+    "@nuxtjs/style-resources",
+    ['@nuxtjs/google-analytics', {
+      id: 'UA-144363105-1',
+      dev: false
+    }]
   ],
   apollo: {
     clientConfigs: {
