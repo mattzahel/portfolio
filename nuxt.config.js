@@ -7,7 +7,7 @@ module.exports = {
    ** Headers of the page
    */
   head: {
-    title: pkg.name,
+    title: 'Mateusz Zahel',
     meta: [{
         charset: "utf-8"
       },
@@ -19,6 +19,14 @@ module.exports = {
         hid: "description",
         name: "description",
         content: pkg.description
+      },
+      {
+        name: 'og:image',
+        content: '/og.png'
+      },
+      {
+        name: 'theme-color',
+        content: '#242423'
       }
     ],
     link: [{
