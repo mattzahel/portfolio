@@ -25,7 +25,7 @@ export default {
       showMenu: false,
       links: [
         {
-          name: "About",
+          name: "About me",
           path: "/",
           hash: ""
         },
@@ -39,10 +39,11 @@ export default {
           path: "/",
           hash: "#projects"
         },
-        // {
-        //   name: "Services",
-        //   path: "/#services"
-        // },
+        {
+          name: "Services",
+          path: "/",
+          hash: "#services"
+        },
         {
           name: "Contact",
           path: "/",

@@ -50,6 +50,7 @@ export default {};
   background-image: url("/hero_bg.png");
   background-size: cover;
   background-position: bottom center;
+  background-color: $bg-grey;
 
   &__form {
     margin-bottom: 2.5rem;
@@ -83,6 +84,7 @@ export default {};
       outline-color: $color-primary;
     }
     & textarea {
+      font-family: "Open Sans", sans-serif;
       min-height: 20rem;
       resize: none;
     }

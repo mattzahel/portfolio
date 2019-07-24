@@ -6,6 +6,5 @@ export default ({
 }) => {
   app.AOS = new AOS.init({
     // disable: "mobile",
-
   }); // eslint-disable-line new-cap
 };
