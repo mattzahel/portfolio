@@ -36,8 +36,7 @@
       </div>
       <div class="services__card">
         <h3 class="heading">
-          Website with
-          <span class="text-highlight">blog</span>
+          <span class="text-highlight">Blog</span> website (CMS)
         </h3>
         <ul>
           <li v-for="(item, index) in services.blog" :key="index">
