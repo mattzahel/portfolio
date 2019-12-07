@@ -10,7 +10,7 @@
           <br />and
           web designer.
         </p>
-        <p class="hero__about">I'm currently freelancing and looking for temporary work.</p>
+        <p class="hero__about">I'm currently freelancing and looking for a part-time job.</p>
         <Socials />
       </div>
       <div class="hero__img">
