@@ -265,7 +265,8 @@ export default {
       color: #007acc;
     }
     .api,
-    .pwa {
+    .pwa,
+    .notifications {
       color: $color-secondary;
     }
   }
