@@ -1,5 +1,5 @@
 # My portfolio website
-[mattzahel.netlify.com](https://mattzahel.netlify.com/)
+[mzahel.pl](https://mzahel.pl/)
 
 ## Technologies stack
 - Vue/Nuxt
