@@ -5,13 +5,11 @@
         <p class="hero__about">
           Hey, I'm
           <span class="text-highlight">Mateusz Zahel</span>
-          <br />I’m an aspiring
-          <span class="text-highlight">junior frontend developer</span>
-          <br />and
-          web designer.
         </p>
-        <p class="hero__about">I'm currently freelancing and looking for a part-time job.</p>
-        <Socials />
+        <p class="hero__about">Currently working for <a href="https://owlsdepartment.com" target="_blank" class="text-highlight">Owls Department</a>
+          as a junior frontend developer.
+        </p>
+          <Socials />
       </div>
       <div class="hero__img">
         <svg-icon name="hero-img" />
@@ -93,6 +91,10 @@ export default {
     font-size: 2.4rem;
     font-weight: 600;
     margin: 1rem 0;
+
+    a {
+      text-decoration: none;
+    }
   }
 
   &__img {
