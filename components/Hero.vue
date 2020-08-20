@@ -9,9 +9,7 @@
         <p class="hero__about">Currently working for <a href="https://owlsdepartment.com" target="_blank" class="text-highlight">Owls Department</a>
           as a junior frontend developer.
         </p>
-        <no-ssr>
           <Socials />
-        </no-ssr>
       </div>
       <div class="hero__img">
         <svg-icon name="hero-img" />
