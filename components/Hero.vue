@@ -6,8 +6,9 @@
           Hey, I'm
           <span class="text-highlight">Mateusz Zahel</span>
         </p>
-        <p class="hero__about">Currently working for <a href="https://owlsdepartment.com" target="_blank" class="text-highlight">Owls Department</a>
-          as a junior frontend developer.
+        <p class="hero__about">Currently working for <a href="https://www.boldare.com/" target="_blank" class="text-highlight">Boldare</a>
+          <br />
+          as a frontend developer.
         </p>
           <Socials />
       </div>
