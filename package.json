@@ -19,7 +19,7 @@
     "@nuxtjs/svg-sprite": "^0.2.1",
     "aos": "^2.3.4",
     "cross-env": "^5.2.0",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "graphql-tag": "^2.10.1",
     "nuxt": "^2.14.3",
     "nuxt-svg-loader": "^1.0.1"
