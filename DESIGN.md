@@ -18,9 +18,12 @@ Strategy: **Restrained, near-monochrome** (named reference: antfu.me neutral gra
 
 ## Typography
 
-- **Everything**: Hanken Grotesk (quiet humanist grotesk), weight contrast 400/650. Normal case throughout; no uppercase display.
-- **Meta/labels**: Fragment Mono, small, lowercase (top row, dates, section labels, links).
-- Hero name ~clamp(2.1rem, 4.5vw, 2.9rem) weight 650; body 1rem/1.7. Modest scale; minimal sites don't shout.
+Three voices, each with one job. Natural mix, not costume:
+
+- **Display (identity moments only)**: Erode (Fontshare serif, weights 400–600), used for the hero name and the footer email link. Weight 500, normal case.
+- **Body**: Hanken Grotesk (quiet humanist grotesk), weight contrast 400/600.
+- **Meta/labels**: Fragment Mono, small, lowercase (dates, section labels, links, stack line).
+- Hero name ~clamp(2.6rem, 6.5vw, 4.1rem) serif 500; body 1rem/1.7. The serif carries the scale; body stays modest.
 
 ## Layout
 

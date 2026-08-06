@@ -31,6 +31,7 @@ onMounted(() => {
 <template>
   <div>
     <GlBackground />
+    <CursorDot />
 
     <div class="page">
       <main>

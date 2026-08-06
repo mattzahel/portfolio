@@ -7,6 +7,7 @@
   --accent: oklch(80% 0.045 160);
 
   --font-sans: 'Hanken Grotesk', system-ui, sans-serif;
+  --font-display: 'Cabinet Grotesk', system-ui, sans-serif;
   --font-mono: 'Fragment Mono', ui-monospace, monospace;
 
   --space-section: clamp(5rem, 12vh, 8rem);
@@ -51,6 +52,13 @@ a {
   color: inherit;
 }
 
+/* set by CursorDot only for fine pointers with motion allowed */
+.has-custom-cursor,
+.has-custom-cursor a,
+.has-custom-cursor button {
+  cursor: none;
+}
+
 :focus-visible {
   outline: 2px solid var(--fg-muted);
   outline-offset: 3px;
@@ -73,10 +81,11 @@ a {
 }
 
 .hero h1 {
-  font-size: clamp(2.1rem, 4.5vw, 2.9rem);
-  font-weight: 650;
-  letter-spacing: -0.022em;
-  line-height: 1.1;
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 6.5vw, 4.1rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.02;
 }
 
 .hero .role {
@@ -264,8 +273,9 @@ footer .cta-label {
 
 .email-link {
   display: inline-block;
-  font-size: clamp(1.25rem, 3vw, 1.6rem);
-  font-weight: 600;
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3.4vw, 1.9rem);
+  font-weight: 700;
   letter-spacing: -0.015em;
   color: var(--fg);
   text-decoration: underline;
