@@ -6,6 +6,14 @@ export default defineNuxtConfig({
   app: {
     head: {
       htmlAttrs: { lang: 'en' },
+      script: [
+        {
+          // stamp before first paint so the reading-highlight start state
+          // (dimmed prose) applies without a flash; skipped for reduced motion
+          innerHTML:
+            "if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('anim')",
+        },
+      ],
       title: 'Mateusz Zahel – Frontend Developer',
       meta: [
         {

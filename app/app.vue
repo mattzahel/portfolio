@@ -29,20 +29,34 @@ onMounted(() => {
   gsap.registerPlugin(ScrollTrigger, SplitText)
 
   // words brighten as you read: one continuous sequence across the whole
-  // prose block, scrubbed to scroll, so the highlight moves in reading order
+  // prose block, scrubbed to scroll, so the highlight moves in reading order.
+  // split only after fonts load (no re-wrap shift); autoSplit re-splits on
+  // resize so mobile address-bar changes don't break line boundaries
   const prose = document.querySelector<HTMLElement>('.prose')
   if (prose) {
-    const split = new SplitText(prose.querySelectorAll('p'), { type: 'words' })
-    gsap.fromTo(
-      split.words,
-      { color: 'oklch(36% 0.003 250)' },
-      {
-        color: 'oklch(71% 0.003 250)',
-        stagger: 0.02,
-        ease: 'none',
-        scrollTrigger: { trigger: prose, start: 'top 82%', end: 'bottom 60%', scrub: true },
-      },
-    )
+    document.fonts.ready.then(() => {
+      SplitText.create(prose.querySelectorAll('p'), {
+        type: 'words',
+        tag: 'span',
+        autoSplit: true,
+        onSplit: (self) => {
+          // inline, not SplitText's default inline-block: keeps line
+          // breaking identical to raw text (inline-block words are atomic,
+          // so hyphenated words would jump to the next line)
+          for (const w of self.words as HTMLElement[]) w.style.display = 'inline'
+          return gsap.fromTo(
+            self.words,
+            { color: 'oklch(36% 0.003 250)' },
+            {
+              color: 'oklch(71% 0.003 250)',
+              stagger: 0.02,
+              ease: 'none',
+              scrollTrigger: { trigger: prose, start: 'top 82%', end: 'bottom 60%', scrub: true },
+            },
+          )
+        },
+      })
+    })
   }
 })
 </script>
@@ -53,6 +67,11 @@ onMounted(() => {
     <CursorDot />
 
     <div class="page">
+      <nav class="links top-links" aria-label="Profiles">
+        <a class="u-link" href="https://www.linkedin.com/in/mateusz-zahel/" target="_blank" rel="noopener">linkedin</a>
+        <a class="u-link" :href="`mailto:${EMAIL}`">email</a>
+      </nav>
+
       <main>
         <section class="hero" aria-label="Intro">
           <h1>Mateusz Zahel</h1>
@@ -60,11 +79,6 @@ onMounted(() => {
             <span>Frontend developer who thinks in products.</span>
             <span>Seven years of shipping, now at Tagvenue in Kraków.</span>
           </p>
-          <nav class="links" aria-label="Profiles">
-            <a class="u-link" href="https://www.linkedin.com/in/mateusz-zahel/" target="_blank" rel="noopener">linkedin</a>
-            <!-- TODO: replace with your real email -->
-            <a class="u-link" href="mailto:hello@mzahel.pl">email</a>
-          </nav>
         </section>
 
         <section aria-labelledby="about">
