@@ -151,6 +151,142 @@ section h2 {
   font-weight: 550;
 }
 
+/* annotated words: on hover the word swaps to a monochrome emoji
+   for a beat, then comes back (is-swapped is toggled from JS) */
+.wink {
+  position: relative;
+}
+
+.wink .w {
+  display: inline-block;
+  transition: opacity 0.2s var(--ease-out), transform 0.25s var(--ease-out);
+}
+
+.wink::after {
+  content: attr(data-emoji);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  font-size: 0.95em;
+  filter: grayscale(1) brightness(1.15);
+  opacity: 0;
+  transform: translate(-50%, calc(-55% + 0.7em));
+  transition: opacity 0.2s var(--ease-out), transform 0.25s var(--ease-out),
+    left 0.25s var(--ease-out);
+  pointer-events: none;
+}
+
+/* the word rolls up and out; the emoji rises into its place */
+.wink.is-swapped .w {
+  opacity: 0;
+  transform: translateY(-0.55em);
+}
+
+.wink.is-swapped::after {
+  opacity: 1;
+  animation: wink-in 0.25s var(--ease-out) both;
+}
+
+@keyframes wink-in {
+  from {
+    transform: translate(-50%, calc(-55% + 0.7em));
+  }
+  to {
+    transform: translate(-50%, -55%);
+  }
+}
+
+/* motion-themed emojis rise in, then move; travel is bounded to the
+   word's own box (left 85% → 15%), right to left: the way they face */
+.wink[data-move='ride'].is-swapped::after {
+  animation: wink-ride 0.95s ease-in-out both;
+}
+
+.wink[data-move='run'].is-swapped::after {
+  animation: wink-run 0.95s ease-in-out both;
+}
+
+.wink[data-move='shake'].is-swapped::after {
+  animation: wink-shake 0.95s ease-in-out both;
+}
+
+@keyframes wink-ride {
+  0% {
+    left: 78%;
+    transform: translate(-50%, calc(-55% + 0.7em));
+  }
+  18% {
+    left: 78%;
+    transform: translate(-50%, -55%);
+  }
+  100% {
+    left: 22%;
+    transform: translate(-50%, -55%);
+  }
+}
+
+@keyframes wink-run {
+  0% {
+    left: 85%;
+    transform: translate(-50%, calc(-55% + 0.7em));
+  }
+  18% {
+    left: 85%;
+    transform: translate(-50%, -55%);
+  }
+  38% {
+    left: 68%;
+    transform: translate(-50%, -68%);
+  }
+  58% {
+    left: 50%;
+    transform: translate(-50%, -55%);
+  }
+  78% {
+    left: 33%;
+    transform: translate(-50%, -68%);
+  }
+  100% {
+    left: 15%;
+    transform: translate(-50%, -55%);
+  }
+}
+
+@keyframes wink-shake {
+  0% {
+    transform: translate(-50%, calc(-55% + 0.7em)) rotate(0deg);
+  }
+  20% {
+    transform: translate(-50%, -55%) rotate(0deg);
+  }
+  36% {
+    transform: translate(-50%, -55%) rotate(-9deg);
+  }
+  52% {
+    transform: translate(-50%, -55%) rotate(7deg);
+  }
+  68% {
+    transform: translate(-50%, -55%) rotate(-5deg);
+  }
+  84% {
+    transform: translate(-50%, -55%) rotate(3deg);
+  }
+  100% {
+    transform: translate(-50%, -55%) rotate(0deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wink .w,
+  .wink::after {
+    transition: opacity 0.18s var(--ease-out);
+  }
+
+  .wink::after {
+    transform: translate(-50%, -55%) scale(1);
+  }
+}
+
 .stack-line {
   margin-top: 1.9rem;
   font-family: var(--font-mono);
@@ -234,10 +370,14 @@ section h2 {
 }
 
 a.name {
+  text-decoration: none;
+  color: var(--fg);
+}
+
+a.name .label {
   text-decoration: underline;
   text-decoration-color: transparent;
   text-underline-offset: 4px;
-  color: var(--fg);
   transition: text-decoration-color 0.2s var(--ease-out);
 }
 
@@ -248,7 +388,7 @@ a.name .ext {
   display: inline-block;
 }
 
-a.name:hover {
+a.name:hover .label {
   text-decoration-color: var(--fg-faint);
 }
 

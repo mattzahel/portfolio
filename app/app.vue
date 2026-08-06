@@ -15,6 +15,17 @@ onMounted(() => {
 
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
+  // annotated words swap to their emoji for a beat on hover, then back
+  const swapTimers = new Map<Element, ReturnType<typeof setTimeout>>()
+  for (const wink of document.querySelectorAll<HTMLElement>('.wink')) {
+    wink.addEventListener('pointerenter', () => {
+      if (wink.classList.contains('is-swapped')) return
+      wink.classList.add('is-swapped')
+      clearTimeout(swapTimers.get(wink))
+      swapTimers.set(wink, setTimeout(() => wink.classList.remove('is-swapped'), 950))
+    })
+  }
+
   gsap.registerPlugin(ScrollTrigger, SplitText)
 
   // words brighten as you read: one continuous sequence across the whole
@@ -69,7 +80,8 @@ onMounted(() => {
               I think of myself as a product developer: I want to know why a
               feature exists and what it should improve before writing any
               code. The part I enjoy most is the path from an idea to
-              something users actually touch: sketching flows with a
+              something users actually touch:
+              sketching flows with a
               designer, cutting scope with a product manager, shipping an
               early version behind an experiment and letting real usage
               decide what happens next.
@@ -81,8 +93,11 @@ onMounted(() => {
               around.
             </p>
             <p>
-              Off the computer, you can find me on a bike or running
-              somewhere around Kraków.
+              Off the computer, you can find me on
+              <span class="wink" data-emoji="🚲" data-move="ride"><span class="w">a bike</span></span>,
+              <span class="wink" data-emoji="🏃" data-move="run"><span class="w">running</span></span>
+              somewhere around Kraków, or drinking
+              <span class="wink" data-emoji="☕" data-move="shake"><span class="w">coffee</span></span>.
             </p>
           </div>
           <p class="stack-line">
@@ -135,7 +150,7 @@ onMounted(() => {
           <ul class="projects">
             <li>
               <a class="name" href="https://bikelens.app" target="_blank" rel="noopener">
-                BikeLens <span class="ext" aria-hidden="true">↗</span>
+                <span class="label">BikeLens</span> <span class="ext" aria-hidden="true">↗</span>
               </a>
               <p>
                 Compares frame geometry across bike brands, so you can tell
@@ -144,13 +159,11 @@ onMounted(() => {
             </li>
             <li>
               <a class="name" href="https://www.zahel.pl/" target="_blank" rel="noopener">
-                Ubezpieczenia Zahel <span class="ext" aria-hidden="true">↗</span>
+                <span class="label">Ubezpieczenia Zahel</span> <span class="ext" aria-hidden="true">↗</span>
               </a>
               <p>
-                Website for an insurance brokerage, designed and built end to
-                end and optimised for local search: structured data, solid
-                Web Vitals, and content organised around what people
-                actually search for.
+                Website for an insurance brokerage, designed and built end
+                to end, optimised for local search.
               </p>
             </li>
             <li>
