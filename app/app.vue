@@ -6,6 +6,32 @@ import { SplitText } from 'gsap/SplitText'
 // TODO: replace with your real email
 const EMAIL = 'hello@mzahel.pl'
 
+const TITLE = 'Mateusz Zahel – Frontend Developer'
+const DESCRIPTION =
+  'Frontend developer in Kraków, Poland. Seven years of building web products: Vue, Nuxt, TypeScript.'
+const SITE_URL = 'https://mzahel.pl'
+
+useSeoMeta({
+  title: TITLE,
+  description: DESCRIPTION,
+  ogTitle: TITLE,
+  ogDescription: DESCRIPTION,
+  ogType: 'website',
+  ogUrl: SITE_URL,
+  ogImage: `${SITE_URL}/og.png`,
+  ogImageWidth: 1200,
+  ogImageHeight: 630,
+  ogImageAlt: 'Mateusz Zahel, frontend developer who thinks in products',
+  twitterCard: 'summary_large_image',
+  twitterTitle: TITLE,
+  twitterDescription: DESCRIPTION,
+  twitterImage: `${SITE_URL}/og.png`,
+})
+
+useHead({
+  link: [{ rel: 'canonical', href: SITE_URL }],
+})
+
 onMounted(() => {
   console.info(
     '%cmade by hand: nuxt · gsap · one small shader\n%csay hi → ' + EMAIL,

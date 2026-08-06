@@ -13,22 +13,24 @@ export default defineNuxtConfig({
           innerHTML:
             "if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('anim')",
         },
-      ],
-      title: 'Mateusz Zahel – Frontend Developer',
-      meta: [
         {
-          name: 'description',
-          content:
-            'Frontend developer in Kraków, Poland. Seven years of building for the web: Vue, Nuxt, TypeScript, GSAP, WebGL.',
+          type: 'application/ld+json',
+          innerHTML: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Person',
+            name: 'Mateusz Zahel',
+            jobTitle: 'Frontend Developer',
+            url: 'https://mzahel.pl',
+            address: {
+              '@type': 'PostalAddress',
+              addressLocality: 'Kraków',
+              addressCountry: 'PL',
+            },
+            sameAs: ['https://www.linkedin.com/in/mateusz-zahel/'],
+          }),
         },
-        { property: 'og:title', content: 'Mateusz Zahel – Frontend Developer' },
-        {
-          property: 'og:description',
-          content:
-            'Frontend developer in Kraków, Poland. Interfaces where the details are the point.',
-        },
-        { name: 'theme-color', content: '#121316' },
       ],
+      meta: [{ name: 'theme-color', content: '#121316' }],
       link: [
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
