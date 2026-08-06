@@ -291,7 +291,7 @@ onMounted(() => {
           <div class="socials">
             <a class="u-link" href="https://www.linkedin.com/in/mateusz-zahel/" target="_blank" rel="noopener">linkedin</a>
           </div>
-          <span><span v-if="krakowTime" class="clock">{{ krakowTime }} in Kraków</span>© 2026</span>
+          <span v-if="krakowTime" class="clock">{{ krakowTime }} in Kraków</span>
         </div>
       </footer>
     </div>

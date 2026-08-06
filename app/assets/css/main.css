@@ -570,10 +570,6 @@ footer .bottom {
   color: var(--fg-faint);
 }
 
-footer .bottom .clock {
-  margin-right: 1.4rem;
-}
-
 footer .bottom .socials {
   display: flex;
   gap: 1.4rem;
