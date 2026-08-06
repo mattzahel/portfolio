@@ -31,10 +31,12 @@ Single column, left-aligned, max-width ~42rem. No borders, no cards, no rules: w
 
 ## Motion
 
-- GSAP load: hero elements rise gently (0.9s, expo.out, stagger 0.08).
-- ScrollTrigger reveal per section only (not per item), subtle, once.
-- Links: color brighten + underline fade-in, 200ms. No block inversions.
-- WebGL canvas: hand-written shader, slow drifting monochrome fbm, barely visible (+4% luminance max), fine grain, soft pointer parallax. Static under prefers-reduced-motion.
+Microanimations only — NO on-load choreography, no block reveals, no per-letter effects (owner explicitly rejected these; twice).
+
+- Reading highlight: About prose brightens word by word, scrubbed to scroll position (SplitText words, color oklch 36% → 71%).
+- Links: color brighten + underline fade-in, 200ms. Experience dates warm up on row hover.
+- Custom cursor: solid dot, 1:1 tracking, difference blend, grows 2.6x over links, leaves a fading dot trail.
+- WebGL canvas: halftone dot grid on drifting noise, dimmed behind the text column, pointer swell. Static under prefers-reduced-motion; all GSAP work is behind the same guard.
 
 ## Components
 

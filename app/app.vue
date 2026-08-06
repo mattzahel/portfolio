@@ -1,29 +1,37 @@
 <script setup lang="ts">
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { SplitText } from 'gsap/SplitText'
+
+// TODO: replace with your real email
+const EMAIL = 'hello@mzahel.pl'
 
 onMounted(() => {
+  console.info(
+    '%cmade by hand: nuxt · gsap · one small shader\n%csay hi → ' + EMAIL,
+    'color:#82858c;font-family:monospace',
+    'color:#e9eaec;font-family:monospace',
+  )
+
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
-  gsap.registerPlugin(ScrollTrigger)
+  gsap.registerPlugin(ScrollTrigger, SplitText)
 
-  gsap.from('[data-hero]', {
-    y: 16,
-    opacity: 0,
-    duration: 0.9,
-    ease: 'expo.out',
-    stagger: 0.08,
-    delay: 0.1,
-  })
-
-  for (const el of gsap.utils.toArray<HTMLElement>('[data-reveal]')) {
-    gsap.from(el, {
-      y: 12,
-      opacity: 0,
-      duration: 0.8,
-      ease: 'expo.out',
-      scrollTrigger: { trigger: el, start: 'top 90%', once: true },
-    })
+  // words brighten as you read: one continuous sequence across the whole
+  // prose block, scrubbed to scroll, so the highlight moves in reading order
+  const prose = document.querySelector<HTMLElement>('.prose')
+  if (prose) {
+    const split = new SplitText(prose.querySelectorAll('p'), { type: 'words' })
+    gsap.fromTo(
+      split.words,
+      { color: 'oklch(36% 0.003 250)' },
+      {
+        color: 'oklch(71% 0.003 250)',
+        stagger: 0.02,
+        ease: 'none',
+        scrollTrigger: { trigger: prose, start: 'top 82%', end: 'bottom 60%', scrub: true },
+      },
+    )
   }
 })
 </script>
@@ -36,19 +44,19 @@ onMounted(() => {
     <div class="page">
       <main>
         <section class="hero" aria-label="Intro">
-          <h1 data-hero>Mateusz Zahel</h1>
-          <p class="role" data-hero>
+          <h1>Mateusz Zahel</h1>
+          <p class="role">
             <span>Frontend developer who thinks in products.</span>
             <span>Seven years of shipping, now at Tagvenue in Kraków.</span>
           </p>
-          <nav class="links" data-hero aria-label="Profiles">
+          <nav class="links" aria-label="Profiles">
             <a class="u-link" href="https://www.linkedin.com/in/mateusz-zahel/" target="_blank" rel="noopener">linkedin</a>
             <!-- TODO: replace with your real email -->
             <a class="u-link" href="mailto:hello@mzahel.pl">email</a>
           </nav>
         </section>
 
-        <section aria-labelledby="about" data-reveal>
+        <section aria-labelledby="about">
           <h2 id="about">about</h2>
           <div class="prose">
             <p>
@@ -82,7 +90,7 @@ onMounted(() => {
           </p>
         </section>
 
-        <section aria-labelledby="experience" data-reveal>
+        <section aria-labelledby="experience">
           <h2 id="experience">experience</h2>
           <ul class="xp">
             <li>
@@ -112,7 +120,7 @@ onMounted(() => {
             <li>
               <span class="dates">2020 – 2022</span>
               <div class="what">
-                <div class="role-line">Frontend Developer <span class="co">· Owls Department</span></div>
+                <div class="role-line">Junior Frontend Developer <span class="co">· Owls Department</span></div>
                 <p>
                   Creative studio. Built design-heavy marketing sites and web
                   apps with Vue, TypeScript and WordPress.
@@ -122,7 +130,7 @@ onMounted(() => {
           </ul>
         </section>
 
-        <section aria-labelledby="projects" data-reveal>
+        <section aria-labelledby="projects">
           <h2 id="projects">personal projects</h2>
           <ul class="projects">
             <li>
@@ -136,7 +144,7 @@ onMounted(() => {
             </li>
             <li>
               <a class="name" href="https://www.zahel.pl/" target="_blank" rel="noopener">
-                zahel.pl <span class="ext" aria-hidden="true">↗</span>
+                Ubezpieczenia Zahel <span class="ext" aria-hidden="true">↗</span>
               </a>
               <p>
                 Website for an insurance brokerage, designed and built end to
@@ -158,8 +166,7 @@ onMounted(() => {
 
       <footer>
         <p class="cta-label">contact</p>
-        <!-- TODO: replace with your real email -->
-        <a class="email-link" href="mailto:hello@mzahel.pl">hello@mzahel.pl</a>
+        <a class="email-link" :href="`mailto:${EMAIL}`">{{ EMAIL }}</a>
         <div class="bottom">
           <div class="socials">
             <a class="u-link" href="https://www.linkedin.com/in/mateusz-zahel/" target="_blank" rel="noopener">linkedin</a>

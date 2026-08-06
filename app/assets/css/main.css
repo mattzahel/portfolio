@@ -179,6 +179,11 @@ section h2 {
   color: var(--fg-faint);
   padding-top: 0.35em;
   white-space: nowrap;
+  transition: color 0.25s var(--ease-out);
+}
+
+.xp li:hover .dates {
+  color: var(--fg-muted);
 }
 
 .xp .what .role-line {
