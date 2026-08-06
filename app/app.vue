@@ -153,11 +153,11 @@ onMounted(() => {
               <span class="wink" data-emoji="🚲" data-move="ride"><span class="w">a bike</span></span>,
               <span class="wink" data-emoji="🏃" data-move="run"><span class="w">running</span></span>
               somewhere around Kraków, or drinking
-              <span class="wink" data-emoji="☕" data-move="shake"><span class="w">coffee</span></span>.
+              <span class="wink" data-emoji="☕" data-move="shake"><span class="w">coffee.</span></span>
             </p>
           </div>
           <p class="stack-line">
-            vue · nuxt · typescript · gsap · node · headless cms · databases
+            vue · nuxt · typescript · animations · headless cms · node · databases
           </p>
         </section>
 
