@@ -4,6 +4,9 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ['~/assets/css/main.css'],
   routeRules: {
+    '/fonts/**': {
+      headers: { 'Cache-Control': 'public, max-age=31536000, immutable' },
+    },
     // pronunciation clip: browsers refuse to embed it from other origins,
     // and search engines are told not to index the file itself
     '/name.m4a': {
@@ -43,17 +46,15 @@ export default defineNuxtConfig({
       meta: [{ name: 'theme-color', content: '#121316' }],
       link: [
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
-        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
-        { rel: 'preconnect', href: 'https://cdn.fontshare.com', crossorigin: '' },
-        {
-          rel: 'stylesheet',
-          href: 'https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300..700&family=Fragment+Mono&display=swap',
-        },
-        {
-          rel: 'stylesheet',
-          href: 'https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@500,700,800&display=swap',
-        },
+        // self-hosted fonts (declared in main.css); preload the three that
+        // paint above the fold so text renders in one pass
+        ...['cabinet-grotesk-800', 'hanken-grotesk-latin', 'fragment-mono-latin'].map((f) => ({
+          rel: 'preload',
+          as: 'font',
+          type: 'font/woff2',
+          href: `/fonts/${f}.woff2`,
+          crossorigin: '',
+        })),
       ],
     },
   },
