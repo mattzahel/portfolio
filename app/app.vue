@@ -32,6 +32,9 @@ useHead({
   link: [{ rel: 'canonical', href: SITE_URL }],
 })
 
+// footer clock: filled on mount only, so SSR markup never disagrees
+const krakowTime = ref('')
+
 // name pronunciation: tiny TTS clip, fetched only on first click
 const namePlaying = ref(false)
 let nameAudio: HTMLAudioElement | null = null
@@ -54,6 +57,16 @@ onMounted(() => {
     'color:#82858c;font-family:monospace',
     'color:#e9eaec;font-family:monospace',
   )
+
+  const fmtKrakow = new Intl.DateTimeFormat('en-GB', {
+    hour: '2-digit',
+    minute: '2-digit',
+    timeZone: 'Europe/Warsaw',
+  })
+  const tick = () => (krakowTime.value = fmtKrakow.format(new Date()))
+  tick()
+  const clock = setInterval(tick, 1000)
+  onBeforeUnmount(() => clearInterval(clock))
 
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
@@ -278,7 +291,7 @@ onMounted(() => {
           <div class="socials">
             <a class="u-link" href="https://www.linkedin.com/in/mateusz-zahel/" target="_blank" rel="noopener">linkedin</a>
           </div>
-          <span>© 2026</span>
+          <span><span v-if="krakowTime" class="clock">{{ krakowTime }} in Kraków</span>© 2026</span>
         </div>
       </footer>
     </div>

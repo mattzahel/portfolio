@@ -15,6 +15,8 @@ precision highp float;
 uniform vec2 u_res;
 uniform float u_time;
 uniform vec2 u_pointer;
+uniform vec2 u_click;
+uniform float u_clickT;
 
 float hash(vec2 p) {
   return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123);
@@ -57,7 +59,13 @@ void main() {
   float dp = length(gl_FragCoord.xy - pp) / min(u_res.x, u_res.y);
   float boost = exp(-dp * dp * 16.0) * 0.3;
 
-  float v = clamp(n * 0.85 + boost, 0.0, 1.0);
+  // click ripple: a thin ring expanding from the last click, fading out
+  vec2 cp = (u_click * 0.5 + 0.5) * u_res;
+  float dc = length(gl_FragCoord.xy - cp) / min(u_res.x, u_res.y);
+  float ring = dc - u_clickT * 0.85;
+  float ripple = exp(-ring * ring * 800.0) * exp(-u_clickT * 2.6) * 0.12;
+
+  float v = clamp(n * 0.85 + boost + ripple, 0.0, 1.0);
   float r = mix(0.02, 0.34, v * v);
 
   float d = length(lu);
@@ -106,6 +114,8 @@ onMounted(() => {
   const uRes = gl.getUniformLocation(prog, 'u_res')
   const uTime = gl.getUniformLocation(prog, 'u_time')
   const uPointer = gl.getUniformLocation(prog, 'u_pointer')
+  const uClick = gl.getUniformLocation(prog, 'u_click')
+  const uClickT = gl.getUniformLocation(prog, 'u_clickT')
 
   const dpr = Math.min(window.devicePixelRatio || 1, 1.5)
   const resize = () => {
@@ -123,6 +133,17 @@ onMounted(() => {
     pointer.ty = -((e.clientY / window.innerHeight) * 2 - 1)
   }
 
+  // "long ago" so no ripple plays at load
+  let clickAt = -1e4
+  const onDown = (e: PointerEvent) => {
+    clickAt = performance.now()
+    gl.uniform2f(
+      uClick,
+      (e.clientX / window.innerWidth) * 2 - 1,
+      -((e.clientY / window.innerHeight) * 2 - 1),
+    )
+  }
+
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
   let raf = 0
   let running = false
@@ -133,6 +154,7 @@ onMounted(() => {
     pointer.y += (pointer.ty - pointer.y) * 0.04
     gl.uniform1f(uTime, (performance.now() - start) / 1000)
     gl.uniform2f(uPointer, pointer.x, pointer.y)
+    gl.uniform1f(uClickT, (performance.now() - clickAt) / 1000)
     gl.drawArrays(gl.TRIANGLES, 0, 3)
     if (running) raf = requestAnimationFrame(frame)
   }
@@ -149,12 +171,14 @@ onMounted(() => {
   const onVisibility = () => (document.hidden ? pause() : play())
 
   if (reduced) {
-    // one static frame, no loop
+    // one static frame, no loop; clickT far in the past keeps the ripple off
     gl.uniform1f(uTime, 40)
     gl.uniform2f(uPointer, -3, -3)
+    gl.uniform1f(uClickT, 1e4)
     gl.drawArrays(gl.TRIANGLES, 0, 3)
   } else {
     window.addEventListener('pointermove', onMove, { passive: true })
+    window.addEventListener('pointerdown', onDown, { passive: true })
     document.addEventListener('visibilitychange', onVisibility)
     play()
   }
@@ -164,6 +188,7 @@ onMounted(() => {
     pause()
     window.removeEventListener('resize', resize)
     window.removeEventListener('pointermove', onMove)
+    window.removeEventListener('pointerdown', onDown)
     document.removeEventListener('visibilitychange', onVisibility)
   })
 })
