@@ -20,7 +20,7 @@ export default defineNuxtConfig({
             '@type': 'Person',
             name: 'Mateusz Zahel',
             jobTitle: 'Frontend Developer',
-            url: 'https://mzahel.pl',
+            url: 'https://mzahel.dev',
             address: {
               '@type': 'PostalAddress',
               addressLocality: 'Kraków',

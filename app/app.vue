@@ -3,13 +3,13 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { SplitText } from 'gsap/SplitText'
 
-// TODO: replace with your real email
-const EMAIL = 'hello@mzahel.pl'
+// receives via email forwarding (e.g. Cloudflare Email Routing)
+const EMAIL = 'hello@mzahel.dev'
 
 const TITLE = 'Mateusz Zahel – Frontend Developer'
 const DESCRIPTION =
   'Frontend developer in Kraków, Poland. Seven years of building web products: Vue, Nuxt, TypeScript.'
-const SITE_URL = 'https://mzahel.pl'
+const SITE_URL = 'https://mzahel.dev'
 
 useSeoMeta({
   title: TITLE,
@@ -61,6 +61,10 @@ onMounted(() => {
   const prose = document.querySelector<HTMLElement>('.prose')
   if (prose) {
     document.fonts.ready.then(() => {
+      // the reveal only ratchets forward: scrolling back up never re-dims
+      let reveal: gsap.core.Tween | null = null
+      let maxProgress = 0
+
       SplitText.create(prose.querySelectorAll('p'), {
         type: 'words',
         tag: 'span',
@@ -70,18 +74,30 @@ onMounted(() => {
           // breaking identical to raw text (inline-block words are atomic,
           // so hyphenated words would jump to the next line)
           for (const w of self.words as HTMLElement[]) w.style.display = 'inline'
-          return gsap.fromTo(
+          reveal = gsap.fromTo(
             self.words,
             { color: 'oklch(36% 0.003 250)' },
-            {
-              color: 'oklch(71% 0.003 250)',
-              stagger: 0.02,
-              ease: 'none',
-              scrollTrigger: { trigger: prose, start: 'top 82%', end: 'bottom 60%', scrub: true },
-            },
+            { color: 'oklch(71% 0.003 250)', stagger: 0.02, ease: 'none', paused: true },
           )
+          reveal.progress(maxProgress)
+          return reveal
         },
       })
+
+      const st = ScrollTrigger.create({
+        trigger: prose,
+        start: 'top 82%',
+        end: 'bottom 60%',
+        onUpdate: (self) => {
+          if (self.progress > maxProgress) {
+            maxProgress = self.progress
+            reveal?.progress(maxProgress)
+          }
+        },
+      })
+      // apply the position the page loaded at (e.g. reload mid-page)
+      maxProgress = st.progress
+      reveal?.progress(maxProgress)
     })
   }
 })
