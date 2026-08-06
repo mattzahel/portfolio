@@ -88,6 +88,62 @@ a {
   line-height: 1.02;
 }
 
+/* pronunciation button: quiet like .u-link, waves pulse while playing */
+.say-name {
+  background: none;
+  border: 0;
+  padding: 0;
+  font-size: inherit;
+  margin-left: 0.18em;
+  color: oklch(37% 0.003 250);
+  vertical-align: baseline;
+  transition: color 0.2s var(--ease-out);
+}
+
+.say-name:hover {
+  color: var(--fg);
+}
+
+.say-name svg {
+  width: 0.36em;
+  height: 0.36em;
+  display: inline-block;
+  /* the drawing ends ~17% above the viewBox bottom; drop it onto the baseline */
+  transform: translateY(16%);
+}
+
+.say-name .wave {
+  transition: opacity 0.2s var(--ease-out);
+}
+
+.say-name.is-playing .wave-1 {
+  animation: wave-pulse 0.9s ease-in-out infinite;
+}
+
+.say-name.is-playing .wave-2 {
+  animation: wave-pulse 0.9s ease-in-out 0.15s infinite;
+}
+
+@keyframes wave-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .say-name.is-playing .wave {
+    animation: none;
+  }
+
+  .say-name.is-playing {
+    color: var(--fg);
+  }
+}
+
 .hero .role {
   margin-top: 1rem;
   font-size: 1.05rem;

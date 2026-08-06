@@ -3,6 +3,16 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   css: ['~/assets/css/main.css'],
+  routeRules: {
+    // pronunciation clip: browsers refuse to embed it from other origins,
+    // and search engines are told not to index the file itself
+    '/name.m4a': {
+      headers: {
+        'Cross-Origin-Resource-Policy': 'same-origin',
+        'X-Robots-Tag': 'noindex',
+      },
+    },
+  },
   app: {
     head: {
       htmlAttrs: { lang: 'en' },

@@ -32,6 +32,22 @@ useHead({
   link: [{ rel: 'canonical', href: SITE_URL }],
 })
 
+// name pronunciation: tiny TTS clip, fetched only on first click
+const namePlaying = ref(false)
+let nameAudio: HTMLAudioElement | null = null
+
+function sayName() {
+  if (!nameAudio) {
+    nameAudio = new Audio('/name.m4a')
+    nameAudio.addEventListener('ended', () => (namePlaying.value = false))
+  }
+  nameAudio.currentTime = 0
+  nameAudio.play().then(
+    () => (namePlaying.value = true),
+    () => {},
+  )
+}
+
 onMounted(() => {
   console.info(
     '%cmade by hand: nuxt · gsap · one small shader\n%csay hi → ' + EMAIL,
@@ -116,7 +132,29 @@ onMounted(() => {
 
       <main>
         <section class="hero" aria-label="Intro">
-          <h1>Mateusz Zahel</h1>
+          <h1>
+            Mateusz Zahel<button
+              class="say-name"
+              :class="{ 'is-playing': namePlaying }"
+              type="button"
+              aria-label="Hear how to pronounce my name"
+              @click="sayName"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M11 5 6 9H3v6h3l5 4z" />
+                <path class="wave wave-1" d="M15.5 8.5a5 5 0 0 1 0 7" />
+                <path class="wave wave-2" d="M18.8 5.7a9.5 9.5 0 0 1 0 12.6" />
+              </svg>
+            </button>
+          </h1>
           <p class="role">
             <span>Frontend developer who thinks in products.</span>
             <span>Seven years of shipping, now at Tagvenue in Kraków.</span>
