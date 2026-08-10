@@ -1,5 +1,6 @@
 /* self-hosted fonts (formerly Google Fonts / Fontshare CDNs);
-   latin-ext subsets load only when a glyph needs them (e.g. ó in Kraków) */
+   latin-ext subsets load only when a glyph needs them (e.g. Polish ł/ż —
+   ó is already covered by the latin range, so Kraków alone won't load them) */
 @font-face {
   font-family: 'Hanken Grotesk';
   font-style: normal;
@@ -140,12 +141,20 @@ a {
   padding-bottom: var(--space-section);
 }
 
-.hero h1 {
+/* type styles live on the wrapper so the inline h1 and the
+   pronunciation button next to it share one line box */
+.hero .hero-title {
   font-family: var(--font-display);
   font-size: clamp(2.6rem, 6.5vw, 4.1rem);
   font-weight: 800;
   letter-spacing: -0.025em;
   line-height: 1.02;
+}
+
+.hero .hero-title h1 {
+  display: inline;
+  font: inherit;
+  letter-spacing: inherit;
 }
 
 /* pronunciation button: quiet like .u-link, waves pulse while playing */

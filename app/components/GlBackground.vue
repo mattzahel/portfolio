@@ -1,7 +1,8 @@
 <script setup lang="ts">
 // Ambient background: hand-written WebGL fragment shader.
-// Domain-warped fbm noise, dim copper glow drifting over warm charcoal,
-// slight pointer parallax. Static single frame under prefers-reduced-motion.
+// Halftone dot grid whose dot size follows a drifting fbm noise field,
+// kept quiet behind the text column, with a pointer swell and a click
+// ripple. Static single frame under prefers-reduced-motion.
 
 const canvas = ref<HTMLCanvasElement | null>(null)
 
@@ -149,6 +150,14 @@ onMounted(() => {
   let running = false
   const start = performance.now()
 
+  // one still frame, no loop; clickT far in the past keeps the ripple off
+  const drawStatic = () => {
+    gl.uniform1f(uTime, 40)
+    gl.uniform2f(uPointer, -3, -3)
+    gl.uniform1f(uClickT, 1e4)
+    gl.drawArrays(gl.TRIANGLES, 0, 3)
+  }
+
   const frame = () => {
     pointer.x += (pointer.tx - pointer.x) * 0.04
     pointer.y += (pointer.ty - pointer.y) * 0.04
@@ -171,22 +180,23 @@ onMounted(() => {
   const onVisibility = () => (document.hidden ? pause() : play())
 
   if (reduced) {
-    // one static frame, no loop; clickT far in the past keeps the ripple off
-    gl.uniform1f(uTime, 40)
-    gl.uniform2f(uPointer, -3, -3)
-    gl.uniform1f(uClickT, 1e4)
-    gl.drawArrays(gl.TRIANGLES, 0, 3)
+    drawStatic()
   } else {
     window.addEventListener('pointermove', onMove, { passive: true })
     window.addEventListener('pointerdown', onDown, { passive: true })
     document.addEventListener('visibilitychange', onVisibility)
     play()
   }
-  window.addEventListener('resize', resize)
+  // resizing the canvas clears its buffer, so the still frame needs a redraw
+  const onResize = () => {
+    resize()
+    if (reduced) drawStatic()
+  }
+  window.addEventListener('resize', onResize)
 
   onBeforeUnmount(() => {
     pause()
-    window.removeEventListener('resize', resize)
+    window.removeEventListener('resize', onResize)
     window.removeEventListener('pointermove', onMove)
     window.removeEventListener('pointerdown', onDown)
     document.removeEventListener('visibilitychange', onVisibility)

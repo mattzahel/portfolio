@@ -97,6 +97,10 @@ onMounted(() => {
       SplitText.create(prose.querySelectorAll('p'), {
         type: 'words',
         tag: 'span',
+        // default "auto" puts aria-label on the <p>, which ARIA prohibits on
+        // the paragraph role (Lighthouse flags it); word-level spans read
+        // fine as plain text, so no compensation is needed
+        aria: 'none',
         autoSplit: true,
         onSplit: (self) => {
           // inline, not SplitText's default inline-block: keeps line
@@ -145,8 +149,11 @@ onMounted(() => {
 
       <main>
         <section class="hero" aria-label="Intro">
-          <h1>
-            Mateusz Zahel<button
+          <!-- button is a sibling, not inside the h1, so the heading's
+               accessible name stays just the name itself -->
+          <div class="hero-title">
+            <h1>Mateusz Zahel</h1>
+            <button
               class="say-name"
               :class="{ 'is-playing': namePlaying }"
               type="button"
@@ -167,7 +174,7 @@ onMounted(() => {
                 <path class="wave wave-2" d="M18.8 5.7a9.5 9.5 0 0 1 0 12.6" />
               </svg>
             </button>
-          </h1>
+          </div>
           <p class="role">
             <span>Frontend developer who thinks in products.</span>
             <span>Seven years of shipping, now at Tagvenue in Kraków.</span>
