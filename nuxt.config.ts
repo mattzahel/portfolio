@@ -22,7 +22,8 @@ export default defineNuxtConfig({
       script: [
         {
           // stamp before first paint so the reading-highlight start state
-          // (dimmed prose) applies without a flash; skipped for reduced motion
+          // (dimmed prose) and the page-loader overlay apply without a
+          // flash; skipped for reduced motion
           innerHTML:
             "if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('anim')",
         },
@@ -43,14 +44,15 @@ export default defineNuxtConfig({
           }),
         },
       ],
-      meta: [{ name: 'theme-color', content: '#121316' }],
+      // matches GlBackground.vue's shader `base` color (vec3(0.072, 0.074, 0.078))
+      meta: [{ name: 'theme-color', content: '#121314' }],
       link: [
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
         // self-hosted fonts (declared in main.css); preload the three that
         // paint above the fold so text renders in one pass
         ...['cabinet-grotesk-800', 'hanken-grotesk-latin', 'fragment-mono-latin'].map((f) => ({
           rel: 'preload',
-          as: 'font',
+          as: 'font' as const,
           type: 'font/woff2',
           href: `/fonts/${f}.woff2`,
           crossorigin: '',
