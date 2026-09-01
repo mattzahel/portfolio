@@ -134,6 +134,31 @@ a {
   padding: 0 clamp(1.25rem, 5vw, 2rem);
 }
 
+/* ---------- page loader ---------- */
+
+/* invisible by default: a no-JS or reduced-motion visitor never sees this
+   at all, only html.anim (JS + motion, stamped pre-paint) makes it opaque.
+   Background is GlBackground's shader base color, not --bg — the two
+   aren't the same shade, and this one has to match the canvas exactly so
+   the fade-out doesn't step to a different tone. */
+.page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  background: #121314;
+  opacity: 0;
+  pointer-events: none;
+}
+
+html.anim .page-loader {
+  opacity: 1;
+  transition: opacity 0.45s var(--ease-out);
+}
+
+html.anim .page-loader.is-hidden {
+  opacity: 0;
+}
+
 /* ---------- hero ---------- */
 
 .hero {

@@ -140,6 +140,7 @@ onMounted(() => {
   <div>
     <GlBackground />
     <CursorDot />
+    <PageLoader />
 
     <div class="page">
       <nav class="links top-links" aria-label="Profiles">

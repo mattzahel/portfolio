@@ -5,6 +5,9 @@
 // ripple. Static single frame under prefers-reduced-motion.
 
 const canvas = ref<HTMLCanvasElement | null>(null)
+// tells PageLoader the shader is up; if WebGL isn't supported and we bail
+// out early below, PageLoader's own timeout covers it instead
+const glReady = useGlReady()
 
 const VERT = `
 attribute vec2 a_pos;
@@ -126,6 +129,7 @@ onMounted(() => {
     gl.uniform2f(uRes, el.width, el.height)
   }
   resize()
+  glReady.value = true
 
   // start off-screen so the swell only appears once the pointer moves
   const pointer = { x: -3, y: -3, tx: -3, ty: -3 }
