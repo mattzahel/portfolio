@@ -141,6 +141,7 @@ onMounted(() => {
     <GlBackground />
     <CursorDot />
     <PageLoader />
+    <ProjectPreview />
 
     <div class="page">
       <nav class="links top-links" aria-label="Profiles">
@@ -264,7 +265,7 @@ onMounted(() => {
           <h2 id="projects">personal projects</h2>
           <ul class="projects">
             <li>
-              <a class="name" href="https://bikelens.app" target="_blank" rel="noopener">
+              <a class="name" href="https://bikelens.app" target="_blank" rel="noopener" data-preview="/previews/bikelens.png">
                 <span class="label">BikeLens</span> <span class="ext" aria-hidden="true">↗</span>
               </a>
               <p>
@@ -273,7 +274,7 @@ onMounted(() => {
               </p>
             </li>
             <li>
-              <a class="name" href="https://www.zahel.pl/" target="_blank" rel="noopener">
+              <a class="name" href="https://www.zahel.pl/" target="_blank" rel="noopener" data-preview="/previews/zahel.png">
                 <span class="label">Ubezpieczenia Zahel</span> <span class="ext" aria-hidden="true">↗</span>
               </a>
               <p>
